@@ -1,0 +1,27 @@
+name: Set Version Number
+description: Make secrets from SecretHub available to your job as environment variables
+runs:
+  using: docker
+  image: Dockerfile
+branding:
+  icon: lock
+  color: blue
+inputs:
+  sed:
+    description: GNU sed pattern to apply
+    required: true
+  file:
+    description: File(s) to apply the version bump to
+    required: true
+  commit_message:
+    description: Commit message
+    required: true
+    default: Set version
+  author_name:
+    description: Name to use for commit author
+    required: false
+    default: GitHub Actions
+  author_email:
+    description: Email to use for commit author
+    required: false
+    default: actions@github.com

@@ -1,0 +1,22 @@
+on:
+  push:
+    branches:
+      - release/v*
+
+jobs:
+  update-and-push-version:
+    name: Update and push version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set version Go
+        uses: ./.github/actions/set-version-number
+        with:
+          sed: 's/^\(const Version = "v\).*\("\)$/\1$VERSION\\2/g'
+          file: test.go
+      - name: Set version YAML
+        uses: ./.github/actions/set-version-number
+        with:
+          sed: 's/\(version: \).*/\1$VERSION/g'
+          file: test.yml
