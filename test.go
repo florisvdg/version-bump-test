@@ -1,4 +1,4 @@
 package main
 
 // Version gets updated automatically
-const Version = "v1.0.0"
+const Version = "v1.1.0"
