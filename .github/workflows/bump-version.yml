@@ -11,12 +11,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set version Go
-        uses: ./.github/actions/set-version-number
+        uses: florisvdg/action-bump-version@master
         with:
-          sed: 's/^\(const Version = "v\).*\("\)$/\1$VERSION\\2/g'
+          sed: 's/^\(const Version = "v\).*\("\)$/\1$VERSION\2/g'
           file: test.go
       - name: Set version YAML
-        uses: ./.github/actions/set-version-number
+        uses: florisvdg/action-bump-version@master
         with:
           sed: 's/\(version: \).*/\1$VERSION/g'
           file: test.yml
+          author_email: bender.github@secrethub.io
